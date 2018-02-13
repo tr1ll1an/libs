@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang "en">
+
+<head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+    <script>
+        window.onload = function() {
+            var obj;
+            rand();
+
+            function unigueItem() {
+                if (obj) {
+                    obj.forEach((e, i, a) => {
+                        //    console.log(`${i}: "${e}" - ${(a.indexOf(e) === i?'': 'уже был')} в index'е >> ${a.indexOf(e)} `);
+                    });
+                    //   console.log(obj)
+                    //   console.log(obj.filter((e, i, a) => a.indexOf(e) === i));
+                } else console.log('Масив не найден')
+            }
+
+            function unigueItemWidhKeys() {
+                var myObj = {};
+                obj.forEach(e => {
+                    myObj[e] = true;
+                })
+            }
+
+            function rand(iter = 10000000) {
+                var o = []
+                for (i = 0; i < iter; i++) {
+                    o.push(Math.floor(Math.random() * 1000) + 1);
+                }
+                return obj = o;
+            }
+
+            function test1() {
+                var time = performance.now();
+                unigueItem();
+                time = performance.now() - time;
+                console.log(' TEST1 >> Время выполнения = ', Math.floor(time), ' мс');
+            }
+
+            function test2() {
+                var time = performance.now();
+                unigueItemWidhKeys();
+                time = performance.now() - time;
+                console.log(' TEST2 (widh Object.keys()) >> Время выполнения = ', Math.floor(time), ' мс');
+            }
+            test2();
+            test1();
+        }
+    </script>
+</body>
+
+</html>
